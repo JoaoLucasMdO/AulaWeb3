@@ -1,0 +1,19 @@
+{
+  "name": "microservicos",
+  "version": "1.0.0",
+  "description": "Exemplo api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "microsservico",
+    "node"
+  ],
+  "author": "João Lucas",
+  "license": "MIT",
+  "devDependencies": {
+    "express": "^4.19.2"
+  }
+}
