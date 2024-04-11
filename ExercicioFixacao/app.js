@@ -19,14 +19,29 @@ app.post('/cursos', (req, res) =>{
 
 app.put('/', (req, res) => {
     const index = alunos.findIndex(x => x.ra == req.query.ra);
-    alunos[index] = {ra : req.body.ra,
-                    nome : req.body.nome,
-                    turma: req.body.turma,
-                    habilidades : req.body.habilidades
-                    }
+    if(req.body.nome != null){
+        alunos[index].nome =  req.body.nome
+    }
+    if(req.body.turma != null){
+        alunos[index].turma =  req.body.turma
+    }
+    if(req.body.habilidades != null){
+        alunos[index].habilidades = req.body.habilidades
+    }
+    
     res.send(JSON.stringify(alunos[index]))
 })
 
+
+app.put('/curso', (req, res) => {
+    const index = alunos.findIndex(x => x.ra == req.query.ra);
+    const index2 = alunos[index].habilidades.findIndex(x => x == req.query.habilidades)
+    
+    
+    alunos[index].habilidades[index2] = req.body.habilidade
+
+    res.send(JSON.stringify(alunos[index]))
+})
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
