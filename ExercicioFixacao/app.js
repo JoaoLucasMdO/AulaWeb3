@@ -43,6 +43,16 @@ app.put('/curso', (req, res) => {
     res.send(JSON.stringify(alunos[index]))
 })
 
+app.delete('/', (req, res) => {
+    const index = alunos.findIndex(x => x.ra == req.query.ra);
+    alunos.splice()
+
+    res.send(JSON.stringify(alunos))
+})
+
+
+
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
