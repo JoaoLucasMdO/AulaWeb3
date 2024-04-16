@@ -3,7 +3,12 @@ const app = express()
 const port = 3000
 app.use(express.json())
 
-var alunos = []
+var alunos = [{
+    "ra": 142,
+    "nome": "Diogo",
+    "turma": "DSM",
+    "habilidades": ["Javascript", "ReactJS", "Redux"]
+    }]
 
 app.post('/', (req, res) => {
 
@@ -45,13 +50,30 @@ app.put('/curso', (req, res) => {
 
 app.delete('/', (req, res) => {
     const index = alunos.findIndex(x => x.ra == req.query.ra);
-    alunos.splice()
+    alunos.splice(index, 1)
 
     res.send(JSON.stringify(alunos))
 })
 
+app.delete('/curso', (req, res) => {
+    const index = alunos.findIndex(x => x.ra == req.query.ra);
+    const index2 = alunos[index].habilidades.findIndex(x => x == req.query.habilidades)
 
+    alunos[index].habilidades.splice(index2, 1)
 
+    res.send(JSON.stringify(alunos))
+})
+
+app.get('/', (req, res) => {
+
+    res.send(JSON.stringify(alunos))
+})
+
+app.get('/aluno', (req, res) => {
+    const index = alunos.findIndex(x => x.ra == req.query.ra);
+
+    res.send(JSON.stringify(alunos[index]))
+})
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
