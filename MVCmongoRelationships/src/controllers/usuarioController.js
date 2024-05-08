@@ -11,8 +11,8 @@ exports.getUsers = async function(req, res){
 
 exports.create = function (req, res) {
     let user = new User({
-        name: req.body.name,
-        age: req.body.age
+        name: req.query.name,
+        age: req.query.age
     })
     user.save()
     .then(res.status(201).send(user.toJSON())
